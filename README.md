@@ -145,7 +145,8 @@ ATM-FullStack/
 ## Setup Instructions
 ### Clone Repository
 ```bash
-git clone https://github.com/MrBhuvi5/ATM-FullStack.git
+git clone https://github.com/MrBhuvi5/ATM-Reader-FullStack
+.git
 cd ATM-FullStack
 ```
 
