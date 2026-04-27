@@ -15,8 +15,8 @@ const mockAtms = [
 ];
 
 const mockUsers = [
-    { customerId: 123, pin: '1234', name: 'John Doe', balance: 50000 },
-    { customerId: 456, pin: '0000', name: 'Jane Smith', balance: 25000 }
+    { customerId: 123, pin: '1234', name: 'Nobody', balance: 50000 },
+    { customerId: 321, pin: '0000', name: 'Demo', balance: 25000 }
 ];
 // --------------------------
 
