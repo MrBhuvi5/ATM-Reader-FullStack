@@ -24,10 +24,13 @@ This helps simulate how an ATM network tracks available cash while processing tr
 </p>
 
 ### ATM Cash Availability
+<p align="center">
+  <img width="635" height="444" alt="Image" src="https://github.com/user-attachments/assets/08f2a5e0-c58a-47af-b89f-6c8ac05644dd" />
+</p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/0bbccab4-c30b-41f2-9748-04526ee8dcf1" width="45%" />
-  <img src="https://github.com/user-attachments/assets/aba70c66-cff0-4f6e-ae55-a61ac85c9032" width="45%" />
+  <img src="https://github.com/user-attachments/assets/c3d85e84-4dc5-41ff-9185-17c4a3841fb0" width="45%" />
+  <img src="https://github.com/user-attachments/assets/b56c5875-9b9f-429d-a5f6-fb7a68f55659" width="45%" />
 </p>
 
 ### ATM Simulation
