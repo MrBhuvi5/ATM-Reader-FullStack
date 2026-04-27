@@ -15,7 +15,7 @@ This helps simulate how an ATM network tracks available cash while processing tr
 
 ### Home Page
 <p align="center">
-  <img width="535" height="344" alt="Image" src="https://github.com/user-attachments/assets/13ec4e4a-f832-4427-8222-0b9461b45ded" />
+  <img src="https://github.com/user-attachments/assets/0411310c-471f-4080-99cc-5fe7924f6b5a" width="70%">
 </p>
 
 ### Find ATM ID
