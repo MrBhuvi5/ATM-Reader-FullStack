@@ -1,5 +1,10 @@
 # ATM Reader FullStack Web Application 💳
 
+![Java](https://img.shields.io/badge/Java-Backend-orange)
+![Spring Boot](https://img.shields.io/badge/SpringBoot-Framework-green)
+![MySQL](https://img.shields.io/badge/MySQL-Database-blue)
+![Maven](https://img.shields.io/badge/Maven-Build-red)
+
 ## Overview
 ATM FullStack Web Application is a Java-based full-stack project designed to simulate real-world ATM operations while also helping users check ATM cash availability before visiting an ATM.
 
