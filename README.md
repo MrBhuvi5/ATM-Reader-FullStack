@@ -11,6 +11,19 @@ The system updates both:
 
 This helps simulate how an ATM network tracks available cash while processing transactions.
 
+## Screenshots
+
+### Home Page
+<img width="735" height="844" alt="Image" src="https://github.com/user-attachments/assets/13ec4e4a-f832-4427-8222-0b9461b45ded" />
+
+### Find ATM ID
+<img width="730" height="720" alt="Image" src="https://github.com/user-attachments/assets/ed1d468b-7b9f-4a89-b2bb-92ea81c39655" />
+
+<img width="692" height="888" alt="Image" src="https://github.com/user-attachments/assets/7dd7b361-6607-4fc1-a314-a5cc3900869e" />
+
+### ATM Cash Availability
+<img width="705" height="876" alt="Image" src="https://github.com/user-attachments/assets/e2ff6704-9c81-40a8-8288-e3f1391f6ce9" />
+
 ## Key Feature
 ### ATM Cash Availability Tracking
 Users can:
