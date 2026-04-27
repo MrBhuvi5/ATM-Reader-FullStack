@@ -37,6 +37,15 @@ This helps simulate how an ATM network tracks available cash while processing tr
   <img src="https://github.com/user-attachments/assets/d717ed75-0dda-40bf-86cc-a1d55fafe1f3" width="45%" />
 </p>
 
+### ATM Operations
+
+<img width="435" height="544" alt="Image" src="https://github.com/user-attachments/assets/6c2243cd-7871-4d76-9396-cd1acf79e9c6" />
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/fdb42dad-fe3d-46ad-bb74-6cb00044af0d" width="45%" />
+  <img src="https://github.com/user-attachments/assets/b50e6e51-0576-409d-a42c-3facaa1bd7b7" width="45%" />
+</p>
+
 ## Key Feature
 ### ATM Cash Availability Tracking
 Users can:
