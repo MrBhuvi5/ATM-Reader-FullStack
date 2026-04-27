@@ -39,7 +39,9 @@ This helps simulate how an ATM network tracks available cash while processing tr
 
 ### ATM Operations
 
-<img width="635" height="444" alt="Image" src="https://github.com/user-attachments/assets/6c2243cd-7871-4d76-9396-cd1acf79e9c6" />
+<p align="center">
+  <img width="635" height="444" alt="Image" src="https://github.com/user-attachments/assets/6c2243cd-7871-4d76-9396-cd1acf79e9c6" />
+</p>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/fdb42dad-fe3d-46ad-bb74-6cb00044af0d" width="45%" />
