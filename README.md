@@ -14,7 +14,9 @@ This helps simulate how an ATM network tracks available cash while processing tr
 ## Screenshots
 
 ### Home Page
-<img width="435" height="544" alt="Image" src="https://github.com/user-attachments/assets/13ec4e4a-f832-4427-8222-0b9461b45ded" />
+<p align="center">
+  <img width="635" height="444" alt="Image" src="https://github.com/user-attachments/assets/13ec4e4a-f832-4427-8222-0b9461b45ded" />
+</p>
 
 ### Find ATM ID
 
@@ -25,7 +27,7 @@ This helps simulate how an ATM network tracks available cash while processing tr
 
 ### ATM Cash Availability
 <p align="center">
-  <img width="635" height="444" alt="Image" src="https://github.com/user-attachments/assets/08f2a5e0-c58a-47af-b89f-6c8ac05644dd" />
+  <img width="535" height="344" alt="Image" src="https://github.com/user-attachments/assets/08f2a5e0-c58a-47af-b89f-6c8ac05644dd" />
 </p>
 
 <p align="center">
