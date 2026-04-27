@@ -7,6 +7,8 @@
 
 ## 🚀 Live Demo
 https://mrbhuvi5.github.io/ATM-Reader-FullStack/
+Customer ID: 123
+Password: 1234
 
 ## Overview
 ATM FullStack Web Application is a Java-based full-stack project designed to simulate real-world ATM operations while also helping users check ATM cash availability before visiting an ATM.
