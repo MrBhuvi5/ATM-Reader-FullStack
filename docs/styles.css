@@ -27,7 +27,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 @keyframes gradientBG {
@@ -49,6 +50,7 @@ body {
     max-width: 420px;
     padding: 15px;
     perspective: 1000px;
+    margin: auto;
 }
 
 .glass-panel {
@@ -385,7 +387,6 @@ button.btn-danger:hover {
     box-shadow: none;
 }
 
-/* Hide increment/decrement spin buttons for number inputs */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -394,4 +395,28 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    body {
+        align-items: flex-start;
+    }
+
+    .atm-container {
+        padding: 0;
+        max-width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        margin: 0;
+    }
+
+    .glass-panel {
+        border-radius: 0;
+        min-height: 100vh;
+        min-height: 100dvh;
+        border: none;
+        box-shadow: none;
+        padding: 30px 20px;
+    }
 }
