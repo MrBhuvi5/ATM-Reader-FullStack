@@ -10,6 +10,9 @@ https://mrbhuvi5.github.io/ATM-Reader-FullStack/
 
 ### Demo Credentials
 ```text
+ATM ID: iob0001, iob0002, iob0003, iob0004, iob0005, sbi5001, sbi5002, sbi5003
+Locations: Chennai, Thiruvarur
+
 Customer ID: 123
 PIN: 1234
 ```
@@ -29,7 +32,7 @@ This helps simulate how an ATM network tracks available cash while processing tr
 
 ### Home Page
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/0411310c-471f-4080-99cc-5fe7924f6b5a" width="70%">
+  <img src="https://github.com/MrBhuvi5/ATM-Reader-FullStack/blob/3e8e5bef14872819295e2dfdbfba7975105d78ab/Images/1.%20Home%20page.png" width="70%">
 </p>
 
 ### Find ATM ID
