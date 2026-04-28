@@ -7,6 +7,24 @@ const state = {
     activeInput: null
 };
 
+// --- MOCK DATA FOR DEMO ---
+const mockAtms = [
+    { atmId: 'iob0001', branchName: 'Indian Overseas Bank', area: 'Agathiyar Nagar', city: 'Chennai', reserveStatus: 500000 },
+    { atmId: 'iob0002', branchName: 'Indian Overseas Bank', area: 'Anna Nagar', city: 'Chennai', reserveStatus: 99000 },
+    { atmId: 'iob0003', branchName: 'Indian Overseas Bank', area: 'Villivakkam', city: 'Chennai', reserveStatus: 55000 },
+    { atmId: 'iob0004', branchName: 'Indian Overseas Bank', area: 'Sidco Nagar', city: 'Chennai', reserveStatus: 200000 },
+    { atmId: 'iob0005', branchName: 'Indian Overseas Bank', area: 'Padi', city: 'Chennai', reserveStatus: 100000 },
+    { atmId: 'sbi5001', branchName: 'State Bank of India', area: 'Kappanamangalam', city: 'Thiruvarur', reserveStatus: 70000 },
+    { atmId: 'sbi5002', branchName: 'State Bank of India', area: 'Engan', city: 'Thiruvarur', reserveStatus: 400000 },
+    { atmId: 'sbi5003', branchName: 'State Bank of India', area: 'Kudavasal', city: 'Thiruvarur', reserveStatus: 100000 }
+];
+
+const mockUsers = [
+    { customerId: 123, pin: '1234', name: 'Anonymous', balance: 50000 },
+    { customerId: 321, pin: '0000', name: 'Nobody', balance: 25000 }
+];
+// --------------------------
+
 const panel = document.getElementById('main-panel');
 
 // Utility to switch views with animation
@@ -34,7 +52,7 @@ function renderWelcome() {
         <h1>InfinityMoney</h1>
         <p class="subtitle">Welcome to the future of banking</p>
         
-        <img src="logo.png" alt="Logo" style="width: 200px; height: 200px; margin: 10px auto; display: block; filter: drop-shadow(0px 5px 10px rgba(0,0,0,0.3));">
+        <img src="Images/Rupees Logo.png" alt="Logo" style="width: 200px; height: 200px; margin: 10px auto; display: block; filter: drop-shadow(0px 5px 10px rgba(0,0,0,0.3));">
         
         <div class="action-grid" style="margin-top: 30px;">
             <div class="action-card" onclick="navigateTo(renderSearchLocation)">
@@ -226,7 +244,7 @@ function renderTransaction(type) {
 
 async function searchAtms() {
     const bankChoice = document.getElementById('bankChoice').value;
-    const location = document.getElementById('location').value;
+    const location = document.getElementById('location').value.toLowerCase();
     const msg = document.getElementById('search-msg');
     const results = document.getElementById('atm-results');
 
@@ -234,37 +252,39 @@ async function searchAtms() {
     msg.className = "success-message";
     results.innerHTML = "";
 
-    try {
-        const res = await fetch(`${state.apiUrl}/atm/search?location=${location}&bankChoice=${bankChoice}`);
-        const data = await res.json();
+    setTimeout(() => {
+        const bankMap = {
+            "1": "Indian Overseas Bank",
+            "2": "ICICI Bank",
+            "3": "Canara Bank",
+            "4": "State Bank of India"
+        };
+        const selectedBank = bankMap[bankChoice];
 
-        if (data.success) {
+        const found = mockAtms.filter(a =>
+            (a.area.toLowerCase().includes(location) || a.city.toLowerCase().includes(location)) &&
+            a.branchName === selectedBank
+        );
+
+        if (found.length > 0) {
             msg.innerText = "";
-            if (data.data.length === 0) {
-                msg.innerText = "No ATM found";
-                msg.className = "error-message";
-            } else {
-                data.data.forEach(atm => {
-                    const div = document.createElement('div');
-                    div.className = 'atm-item';
-                    div.innerHTML = `
-                        <h4>${atm.atmId.toUpperCase()}</h4>
-                        <p>${atm.branchName} - ${atm.area}, ${atm.city}</p>
-                    `;
-                    div.onclick = () => {
-                        navigateTo(() => renderCheckReserve(atm.atmId));
-                    };
-                    results.appendChild(div);
-                });
-            }
+            found.forEach(atm => {
+                const div = document.createElement('div');
+                div.className = 'atm-item';
+                div.innerHTML = `
+                    <h4>${atm.atmId.toUpperCase()}</h4>
+                    <p>${atm.branchName} - ${atm.area}, ${atm.city}</p>
+                `;
+                div.onclick = () => {
+                    navigateTo(() => renderCheckReserve(atm.atmId));
+                };
+                results.appendChild(div);
+            });
         } else {
-            msg.innerText = data.message === "No ATM Available at that location!" ? "No ATM found" : data.message;
+            msg.innerText = "No ATM found";
             msg.className = "error-message";
         }
-    } catch (e) {
-        msg.innerText = "Error connecting to server";
-        msg.className = "error-message";
-    }
+    }, 500); // Simulate network delay
 }
 
 async function validateAtmId() {
@@ -275,21 +295,16 @@ async function validateAtmId() {
     msg.innerText = "Validating...";
     msg.className = "success-message";
 
-    try {
-        const res = await fetch(`${state.apiUrl}/atm/validate?atmId=${input}`);
-        const data = await res.json();
-
-        if (data.success) {
-            state.atmId = input.toLowerCase();
+    setTimeout(() => {
+        const atm = mockAtms.find(a => a.atmId.toLowerCase() === input.toLowerCase());
+        if (atm) {
+            state.atmId = atm.atmId;
             navigateTo(renderLogin);
         } else {
-            msg.innerText = data.message;
+            msg.innerText = "Invalid ATM ID. Please try again.";
             msg.className = "error-message";
         }
-    } catch (e) {
-        msg.innerText = "Error connecting to server";
-        msg.className = "error-message";
-    }
+    }, 500);
 }
 
 async function checkReserveStatus() {
@@ -302,30 +317,25 @@ async function checkReserveStatus() {
     msg.className = "success-message";
     resultDiv.innerHTML = '';
 
-    try {
-        const res = await fetch(`${state.apiUrl}/atm/reserve?atmId=${input}`);
-        const data = await res.json();
-
-        if (data.success) {
+    setTimeout(() => {
+        const atm = mockAtms.find(a => a.atmId.toLowerCase() === input.toLowerCase());
+        if (atm) {
             msg.innerText = "";
-            const atm = data.data;
+            let displayStatus = atm.reserveStatus > 100000 ? "100000+" : atm.reserveStatus;
             resultDiv.innerHTML = `
                 <div class="balance-card" style="margin-top: 10px;">
                     <div class="balance-label">${atm.atmId.toUpperCase()} Reserve Status</div>
-                    <div class="balance-amount">₹ ${atm.reserveStatus}</div>
+                    <div class="balance-amount">₹ ${displayStatus}</div>
                     <div style="font-size:0.8rem; color:var(--text-muted); margin-top:10px;">
                         ${atm.branchName} <br> ${atm.area}, ${atm.city}
                     </div>
                 </div>
             `;
         } else {
-            msg.innerText = data.message;
+            msg.innerText = "ATM ID not found in records.";
             msg.className = "error-message";
         }
-    } catch (e) {
-        msg.innerText = "Error connecting to server";
-        msg.className = "error-message";
-    }
+    }, 500);
 }
 
 function appendKeypad(num) {
@@ -362,40 +372,26 @@ async function performLogin() {
     msg.innerText = "Authenticating...";
     msg.className = "success-message";
 
-    try {
-        const res = await fetch(`${state.apiUrl}/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ atmId: state.atmId, customerId: parseInt(customerId), pin: pin })
-        });
-        const data = await res.json();
-
-        if (data.success) {
-            state.customerId = parseInt(customerId);
-            state.customerName = data.data;
+    setTimeout(() => {
+        const user = mockUsers.find(u => u.customerId === parseInt(customerId) && u.pin === pin);
+        if (user) {
+            state.customerId = user.customerId;
+            state.customerName = user.name;
             fetchBalance();
         } else {
-            msg.innerText = data.message;
+            msg.innerText = "Invalid Customer ID or PIN";
             msg.className = "error-message";
             state.activeInput = 'pinInput';
             clearKeypad();
         }
-    } catch (e) {
-        msg.innerText = "Error connecting to server";
-        msg.className = "error-message";
-    }
+    }, 800);
 }
 
 async function fetchBalance() {
-    try {
-        const res = await fetch(`${state.apiUrl}/account/balance?customerId=${state.customerId}`);
-        const data = await res.json();
-        if (data.success) {
-            state.balance = data.data;
-            navigateTo(renderDashboard);
-        }
-    } catch (e) {
-        console.error(e);
+    const user = mockUsers.find(u => u.customerId === state.customerId);
+    if (user) {
+        state.balance = user.balance;
+        navigateTo(renderDashboard);
     }
 }
 
@@ -421,34 +417,35 @@ async function submitTransaction(type) {
     msg.innerText = "Processing...";
     msg.className = "success-message";
 
-    try {
-        const endpoint = type === 'withdraw' ? '/transaction/withdraw' : '/transaction/deposit';
-        const res = await fetch(`${state.apiUrl}${endpoint}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                atmId: state.atmId,
-                customerId: state.customerId,
-                amount: amount
-            })
-        });
-        const data = await res.json();
+    setTimeout(() => {
+        const user = mockUsers.find(u => u.customerId === state.customerId);
+        const atm = mockAtms.find(a => a.atmId === state.atmId);
 
-        if (data.success) {
-            state.balance = data.data;
-            msg.innerText = data.message;
-            msg.className = "success-message";
-            setTimeout(() => {
-                navigateTo(renderDashboard);
-            }, 1500);
+        if (type === 'withdraw') {
+            if (amount > user.balance) {
+                msg.innerText = "Insufficient balance!";
+                msg.className = "error-message";
+                return;
+            }
+            if (atm && amount > atm.reserveStatus) {
+                msg.innerText = "ATM does not have enough cash reserve!";
+                msg.className = "error-message";
+                return;
+            }
+            user.balance -= amount;
+            if (atm) atm.reserveStatus -= amount;
         } else {
-            msg.innerText = data.message;
-            msg.className = "error-message";
+            user.balance += amount;
+            if (atm) atm.reserveStatus += amount;
         }
-    } catch (e) {
-        msg.innerText = "Error connecting to server";
-        msg.className = "error-message";
-    }
+
+        state.balance = user.balance;
+        msg.innerText = "Transaction Successful!";
+        msg.className = "success-message";
+        setTimeout(() => {
+            navigateTo(renderDashboard);
+        }, 1500);
+    }, 1000);
 }
 
 function logout() {

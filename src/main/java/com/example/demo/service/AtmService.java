@@ -20,7 +20,7 @@ public class AtmService {
         if (atmId == null) return null;
         atmId = atmId.toLowerCase();
         if (atmId.contains("iob")) return "iob";
-        if (atmId.contains("icic")) return "icic";
+        if (atmId.contains("icici")) return "icici";
         if (atmId.contains("cnrb")) return "cnrb";
         if (atmId.contains("sbi")) return "sbi";
         return null;
@@ -38,7 +38,7 @@ public class AtmService {
     public List<AtmDetails> searchAtms(String location, int bankChoice) {
         String table = switch (bankChoice) {
             case 1 -> "iob";
-            case 2 -> "icic";
+            case 2 -> "icici";
             case 3 -> "cnrb";
             case 4 -> "sbi";
             default -> null;
