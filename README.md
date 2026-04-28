@@ -31,8 +31,8 @@ This helps simulate how an ATM network tracks available cash while processing tr
 ## Screenshots
 
 ### Home Page
-<p align="center">
-  <img src="https://github.com/MrBhuvi5/ATM-Reader-FullStack/blob/3e8e5bef14872819295e2dfdbfba7975105d78ab/Images/1.%20Home%20page.png" width="20%">
+<p align="left">
+<img src="Images/1. Home page.png" width="25%">
 </p>
 
 ### Find ATM ID
