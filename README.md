@@ -32,45 +32,35 @@ This helps simulate how an ATM network tracks available cash while processing tr
 
 ### Home Page
 <p align="left">
-<img src="Images/1. Home page.png" width="25%">
+<img src="Images/1. Home page.png" width="30%">
 </p>
 
 ### Find ATM ID
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/2c9c7887-bcec-4844-a3c7-5f69b0678b3f" width="45%" />
-  <img src="https://github.com/user-attachments/assets/b9084b46-1549-447a-8964-988739852f5e" width="45%" />
+<p align="left">
+  <img src="Images/2. Find ATM ID.png" width="30%">
+  <img src="Images/3. Search result.png" width="30%">
 </p>
 
-### ATM Cash Availability
-<p align="center">
-  <img width="635" height="444" alt="Image" src="https://github.com/user-attachments/assets/eb66548c-2309-4b66-bd13-a01019436548" />
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/c3d85e84-4dc5-41ff-9185-17c4a3841fb0" width="45%" />
-  <img src="https://github.com/user-attachments/assets/b56c5875-9b9f-429d-a5f6-fb7a68f55659" width="45%" />
+### ATM Cash Reserve
+<p align="left">
+  <img src="Images/4. Check Cash Reserve.png" width="30%">
+  <img src="Images/5. ATM Cash Reserve Status.png" width="30%">
 </p>
 
 ### ATM Simulation
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/fc05b6a0-3252-46af-bbeb-d8a15dd4f00d" width="45%" />
-  <img src="https://github.com/user-attachments/assets/d717ed75-0dda-40bf-86cc-a1d55fafe1f3" width="45%" />
+<p align="left">
+  <img src="Images/6. ATM Operation 1 Choose an ATM.png" width="30%">
+  <img src="Images/7. ATM Operation 2 User Authentication.png" width="30%">
 </p>
 
 ### ATM Operations
-
-<p align="center">
-  <img width="635" height="444" alt="Image" src="https://github.com/user-attachments/assets/6c2243cd-7871-4d76-9396-cd1acf79e9c6" />
+<p align="left">
+  <img src="Images/8. Account Status.png" width="30%">
+  <img src="Images/9. Withdraw.png" width="30%">
+  <img src="Images/10. Deposit.png" width="30%">
 </p>
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/fdb42dad-fe3d-46ad-bb74-6cb00044af0d" width="45%" />
-  <img src="https://github.com/user-attachments/assets/b50e6e51-0576-409d-a42c-3facaa1bd7b7" width="45%" />
-</p>
-
-## Key Feature
+## Key Features
 ### ATM Cash Availability Tracking
 Users can:
 - Check whether an ATM has sufficient cash available
@@ -157,8 +147,7 @@ ATM-FullStack/
 ## Setup Instructions
 ### Clone Repository
 ```bash
-git clone https://github.com/MrBhuvi5/ATM-Reader-FullStack
-.git
+git clone https://github.com/MrBhuvi5/ATM-Reader-FullStack.git
 cd ATM-FullStack
 ```
 
