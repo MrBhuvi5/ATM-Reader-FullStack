@@ -7,6 +7,8 @@ const state = {
     activeInput: null
 };
 
+let historyStack = [];
+
 // --- MOCK DATA FOR DEMO ---
 const mockAtms = [
     { atmId: 'iob0001', branchName: 'Indian Overseas Bank', area: 'Agathiyar Nagar', city: 'Chennai', reserveStatus: 500000 },
@@ -28,7 +30,7 @@ const mockUsers = [
 const panel = document.getElementById('main-panel');
 
 // Utility to switch views with animation
-function navigateTo(renderFunc) {
+function navigateTo(renderFunc, isBack = false) {
     panel.classList.replace('view-enter', 'view-exit');
     if (!panel.classList.contains('view-exit')) {
         panel.classList.add('view-exit');
@@ -37,6 +39,13 @@ function navigateTo(renderFunc) {
     setTimeout(() => {
         panel.innerHTML = renderFunc();
         panel.classList.replace('view-exit', 'view-enter');
+
+        if (!isBack) {
+            const newIndex = (history.state && history.state.index !== undefined) ? history.state.index + 1 : historyStack.length;
+            historyStack.length = newIndex;
+            historyStack.push(renderFunc);
+            history.pushState({ index: newIndex }, '');
+        }
 
         // Attach post-render listeners if defined
         const eventDefiner = document.getElementById('event-definer');
@@ -74,7 +83,7 @@ function renderWelcome() {
 function renderSearchLocation() {
     return `
         <div class="header-with-back">
-            <button class="back-btn" onclick="navigateTo(renderWelcome)">←</button>
+            <button class="back-btn" onclick="history.back()">←</button>
             <h1 style="margin:0; flex-grow:1; text-align:left;">Find ATM</h1>
         </div>
         
@@ -103,7 +112,7 @@ function renderSearchLocation() {
 function renderEnterAtmId() {
     return `
         <div class="header-with-back">
-            <button class="back-btn" onclick="navigateTo(renderWelcome)">←</button>
+            <button class="back-btn" onclick="history.back()">←</button>
             <h1 style="margin:0; flex-grow:1; text-align:left;">Enter ATM ID</h1>
         </div>
         
@@ -120,7 +129,7 @@ function renderCheckReserve(initialAtmId = '') {
     const autoCheck = initialAtmId ? `<div id="event-definer" style="display:none" onclick="checkReserveStatus()"></div>` : '';
     return `
         <div class="header-with-back">
-            <button class="back-btn" onclick="navigateTo(renderWelcome)">←</button>
+            <button class="back-btn" onclick="history.back()">←</button>
             <h1 style="margin:0; flex-grow:1; text-align:left;">Check Cash Reserve</h1>
         </div>
         
@@ -141,7 +150,7 @@ function renderLogin() {
     state.activeInput = 'customerIdInput';
     return `
         <div class="header-with-back">
-            <button class="back-btn" onclick="navigateTo(renderWelcome)">←</button>
+            <button class="back-btn" onclick="history.back()">←</button>
             <h1 style="margin:0; flex-grow:1; text-align:left;">Welcome</h1>
         </div>
         <p class="subtitle">ATM: ${state.atmId.toUpperCase()}</p>
@@ -209,7 +218,7 @@ function renderTransaction(type) {
     const title = isWithdraw ? 'Withdraw Cash' : 'Deposit Cash';
     return `
         <div class="header-with-back">
-            <button class="back-btn" onclick="navigateTo(renderDashboard)">←</button>
+            <button class="back-btn" onclick="history.back()">←</button>
             <h1 style="margin:0; flex-grow:1; text-align:left;">${title}</h1>
         </div>
         
@@ -443,7 +452,7 @@ async function submitTransaction(type) {
         msg.innerText = "Transaction Successful!";
         msg.className = "success-message";
         setTimeout(() => {
-            navigateTo(renderDashboard);
+            history.back();
         }, 1500);
     }, 1000);
 }
@@ -452,11 +461,23 @@ function logout() {
     state.customerId = null;
     state.customerName = null;
     state.balance = 0;
-    navigateTo(renderWelcome);
+    historyStack = [renderWelcome];
+    history.pushState({ index: 0 }, '');
+    navigateTo(renderWelcome, true);
 }
 
 // Initialize App
 window.onload = () => {
+    historyStack = [renderWelcome];
+    history.replaceState({ index: 0 }, '');
     panel.classList.add('view-enter');
     panel.innerHTML = renderWelcome();
 };
+
+window.addEventListener('popstate', (e) => {
+    if (e.state && e.state.index !== undefined && historyStack[e.state.index]) {
+        navigateTo(historyStack[e.state.index], true);
+    } else {
+        navigateTo(renderWelcome, true);
+    }
+});
